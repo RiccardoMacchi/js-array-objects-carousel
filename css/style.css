@@ -1,0 +1,93 @@
+/* Regole generali */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Regole wrapper */
+#wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Regole container caroselollo */
+#container_carosel {
+    width: 70%;
+    margin: auto;
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+#container_carosel img {
+    width: 100%;
+    
+}
+
+/* Regole box */
+.box_carosel {
+    max-height: 550px;
+    overflow: hidden;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.active {
+    display: flex;
+}
+
+/* Regole bottoni */
+#my_btn_next{
+    position: absolute;
+    top: 0%;
+    right: 50%;
+    transform: translate(-50%,-50%);
+    padding: 10px 20px;
+    background-color: #717378;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+#my_btn_prev {
+    position: absolute;
+    top: 100%;
+    right: 50%;
+    transform: translate(-50%,-50%);
+    padding: 10px 20px;
+    background-color: #717378;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+/* Regole box dx */
+
+#right_box {
+    min-width: 200px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+}
+
+
+#right_box img{
+    height: calc(550px / 5);
+}
+
+.opacity {
+    opacity: 0.7;
+}
+
