@@ -33,10 +33,17 @@ const images = [
 // Stampa in pagina della img
 images.forEach((element) => {
     let newDiv = document.createElement("div");
+    let newWrapDiv = document.createElement("div")
+    let newH3 = document.createElement("h3")
+    let newP = document.createElement("p")
     // Stampa di immagine a ogni giro
     newDiv.innerHTML += `<img src="${element.image}" alt="${element.image}">`;
     newDiv.className = "box_carosel";
-    container.append(newDiv);
+    newH3.append(`${element.title}`)
+    newP.innerHTML += element.text
+    newWrapDiv.append(newH3,newP);
+    newDiv.append(newWrapDiv)
+    container.append(newDiv)
 })
 
 
@@ -54,6 +61,7 @@ const boxDx = document.getElementById("right_box")
 images.forEach((element) => {
     let newDiv = document.createElement("div");
     // Stampa di immagine a ogni giro
+    let immagineIesima = element.image
     newDiv.innerHTML += `<img src="${element.image}" alt="${element.image}">`;
     newDiv.className = "box_img_dx";
     boxDx.append(newDiv);
@@ -121,7 +129,6 @@ btnCaroselPrev.addEventListener("click",
         }
     }
 )
-
 
 
 
