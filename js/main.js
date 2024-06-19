@@ -1,6 +1,6 @@
 // CAROSELLO IMMAGINI
 
-const container = document.getElementById("container_carosel");
+
 // Creazione arrey
 const images = [ 
     { 
@@ -30,6 +30,12 @@ const images = [
     } 
 ];
 
+// Carosello centrale
+const container = document.getElementById("container_carosel");
+// Carosello dx
+const boxDx = document.getElementById("right_box")
+
+
 // Stampa in pagina della img
 images.forEach((element) => {
     let newDiv = document.createElement("div");
@@ -44,6 +50,12 @@ images.forEach((element) => {
     newWrapDiv.append(newH3,newP);
     newDiv.append(newWrapDiv)
     container.append(newDiv)
+    let newDivbis = document.createElement("div");
+    // Stampa carosello dx
+    newDivbis.innerHTML += `<img src="${element.image}" alt="${element.image}">`;
+    newDivbis.className = "box_img_dx";
+    boxDx.append(newDivbis);
+    // 
 })
 
 
@@ -55,17 +67,7 @@ images.forEach((element) => {
 //     // Creazione div contenitore diretto immagini
 
 // }
-// Carosello dx
-const boxDx = document.getElementById("right_box")
 
-images.forEach((element) => {
-    let newDiv = document.createElement("div");
-    // Stampa di immagine a ogni giro
-    let immagineIesima = element.image
-    newDiv.innerHTML += `<img src="${element.image}" alt="${element.image}">`;
-    newDiv.className = "box_img_dx";
-    boxDx.append(newDiv);
-})
 // for (i = 0; i < imgArrey.length; i++){
 //     itemImg = imgArrey[i];
 //     // Creazione div contenitore diretto immagini
@@ -80,7 +82,7 @@ images.forEach((element) => {
 const itemsArrey = document.getElementsByClassName("box_carosel");
 // Selezione di tutte le img all'interno del box dx
 const itemsBoxDx = document.getElementsByClassName("box_img_dx")
-console.log(itemsBoxDx[2])
+console.log(itemsArrey)
 
 // Prima immagine visibile
 let activeItem = 0;
@@ -88,26 +90,10 @@ itemsArrey[activeItem].classList.add("active");
 // Prima immagine oscuprata
 itemsBoxDx[activeItem].classList.add("opacity")
 
+
 // bottone click 
 let btnCaroselNext = document.getElementById("my_btn_next");
-btnCaroselNext.addEventListener("click",
-    () => {
-        if (activeItem < images.length -1){
-            itemsBoxDx[activeItem].classList.remove("opacity")
-            itemsArrey[activeItem].classList.remove("active")
-            activeItem++;
-            itemsArrey[activeItem].classList.add("active")
-            itemsBoxDx[activeItem].classList.add("opacity")
-        } else {
-            // Carosello infinito
-            itemsBoxDx[activeItem].classList.remove("opacity")
-            itemsArrey[activeItem].classList.remove("active")
-            activeItem = 0
-            itemsArrey[activeItem].classList.add("active")
-            itemsBoxDx[activeItem].classList.add("opacity")
-        }
-    }
-)
+btnCaroselNext.addEventListener("click",gira)
 
 // bottone click indietro
 let btnCaroselPrev = document.getElementById("my_btn_prev");
@@ -130,8 +116,51 @@ btnCaroselPrev.addEventListener("click",
     }
 )
 
+// Recupero my_box per aggiunta classi 
+
+
+// Bottoni start and stop
+let startBtn = document.getElementById("start")
+startBtn.addEventListener("click", start);
+let stopBtn = document.getElementById("stop")
+stopBtn.addEventListener("click", stop);
+// Start and stop
+let go;
+
+function start() {
+  // check if an interval has already been set up
+  if (!go) {
+    stopBtn.classList.remove("bigger")
+    startBtn.className = "bigger"
+    go = setInterval(gira,2000)
+  }
+}
+
+function stop() {
+    stopBtn.className = "bigger"
+    startBtn.classList.remove("bigger")
+    clearInterval(go);
+    // release our intervalID from the variable
+    go = null;
+}
 
 
 
 
-
+// Funzione carosello infinito
+function gira() {
+    if (activeItem < images.length -1){
+        itemsBoxDx[activeItem].classList.remove("opacity")
+        itemsArrey[activeItem].classList.remove("active")
+        activeItem++;
+        itemsArrey[activeItem].classList.add("active")
+        itemsBoxDx[activeItem].classList.add("opacity")
+    } else {
+        // Carosello infinito
+        itemsBoxDx[activeItem].classList.remove("opacity")
+        itemsArrey[activeItem].classList.remove("active")
+        activeItem = 0
+        itemsArrey[activeItem].classList.add("active")
+        itemsBoxDx[activeItem].classList.add("opacity")
+    }
+}

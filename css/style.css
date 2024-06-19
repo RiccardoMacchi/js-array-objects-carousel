@@ -20,6 +20,7 @@ body {
 
 /* Regole container caroselollo */
 #container_carosel {
+    position: relative;
     width: 70%;
     margin: auto;
     display: flex;
@@ -105,3 +106,29 @@ body {
     opacity: 0.7;
 }
 
+
+/* classi bottoni go stop */
+#my_box {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0,-50%);
+    z-index: 10;
+}
+
+#my_box span {
+    display: inline-block;
+    margin-left: 10px;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 10px 13px;
+    background-color: #717378;
+}
+
+#my_box span:active{
+    background-color: white;
+}
+
+.bigger {
+    transform: scale(1.2);
+}
